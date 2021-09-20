@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\PROG\Projects C++\GLFWOpenGLTutorial\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\PROG\Projects C++\GLFWOpenGLTutorial\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\PROG\Projects C++\GLFWOpenGLTutorial\GLFW-3D-OpenGL-Tutorial\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\PROG\Projects C++\GLFWOpenGLTutorial\GLFW-3D-OpenGL-Tutorial\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -82,8 +82,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\PROG\Projects C++\GLFWOpenGLTutorial\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\PROG\Projects C++\GLFWOpenGLTutorial\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\PROG\Projects C++\GLFWOpenGLTutorial\GLFW-3D-OpenGL-Tutorial\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\PROG\Projects C++\GLFWOpenGLTutorial\GLFW-3D-OpenGL-Tutorial\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
@@ -165,6 +166,7 @@
     <None Include="default.vertexShader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="ElementBufferObject.h" />
     <ClInclude Include="ShaderClass.h" />
     <ClInclude Include="Texture.h" />

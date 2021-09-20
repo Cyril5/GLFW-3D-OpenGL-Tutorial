@@ -10,13 +10,14 @@
 #include "VertexArrayObject.h";
 #include "VertexBufferObject.h";
 #include "ElementBufferObject.h";
-#include"Texture.h";
+#include "Texture.h";
+#include "Camera.h";
 
 const unsigned int VECTOR3_TOTAL_ELEMENT = 3;
 const unsigned int VECTOR2_TOTAL_ELEMENT = 2;
 
-const unsigned int width = 800;
-const unsigned int height = 800;
+const unsigned int windowWidth = 800;
+const unsigned int windowHeight = 600;
 
 // Vertices coordinates
 GLfloat vertices[] =
@@ -49,7 +50,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	
-	GLFWwindow* window = glfwCreateWindow(width, height, "OpenGL Tutorial", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(windowWidth, windowHeight, "OpenGL Tutorial", NULL, NULL);
 
 	if (window == NULL) {
 		std::cout << "Fail to create GLFW window" << std::endl;
@@ -61,7 +62,7 @@ int main() {
 
 	gladLoadGL();
 
-	glViewport(0, 0, width, height);
+	glViewport(0, 0, windowWidth, windowHeight);
 
 
 	Shader shaderProgram("default.vertexShader","default.fragmentShader");
@@ -83,16 +84,18 @@ int main() {
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-	GLuint scaleUniformID = glGetUniformLocation(shaderProgram.ID, "scale");
-	
+	//GLuint scaleUniformID = glGetUniformLocation(shaderProgram.ID, "scale");
+
 	//Texture
 	Texture Texture("brick.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 	Texture.texUnit(shaderProgram, "tex0", 0);
 
-	float rotation = 0.0f;
-	double prevTime = glfwGetTime();
+	//float rotation = 0.0f;
+	//double prevTime = glfwGetTime();
 
 	glEnable(GL_DEPTH_TEST);
+
+	Camera camera(windowWidth, windowHeight, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -101,33 +104,36 @@ int main() {
 
 		shaderProgram.Activate();
 
-		double currentTime = glfwGetTime();
-		if (currentTime - prevTime >= 1 / 60) {
-			// toutes les 60 frames
-			rotation += 0.1f;
-			prevTime = currentTime;
-		}
+		//double currentTime = glfwGetTime();
+		//if (currentTime - prevTime >= 1 / 60) {
+		//	// toutes les 60 frames
+		//	rotation += 0.1f;
+		//	prevTime = currentTime;
+		//}
 
-		glm::mat4 modelMatrix = glm::mat4(1.0f);
-		glm::mat4 viewMatrix = glm::mat4(1.0f);
-		glm::mat4 projMatrix = glm::mat4(1.0f);
+		//glm::mat4 modelMatrix = glm::mat4(1.0f);
+		//glm::mat4 viewMatrix = glm::mat4(1.0f);
+		//glm::mat4 projMatrix = glm::mat4(1.0f);
 
-		modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-		viewMatrix = glm::translate(viewMatrix, glm::vec3(0, -0.5f, -2.0));
-		projMatrix = glm::perspective(glm::radians(45.0f), (float)(width / height), 0.1f, 100.0f);
+		//modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+		//viewMatrix = glm::translate(viewMatrix, glm::vec3(0, -0.5f, -2.0));
+		//projMatrix = glm::perspective(glm::radians(45.0f), (float)(width / height), 0.1f, 100.0f);
 
-		int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
+		//int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
-		int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+		//int viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
+		//glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(viewMatrix));
 
-		int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMatrix));
+		//int projLoc = glGetUniformLocation(shaderProgram.ID, "proj");
+		//glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projMatrix));
 
 
 		// change la valeur uniform "scale" dans le shader (il faut que le shader soit activé avant)
-		glUniform1f(scaleUniformID, 0.5f);
+		//glUniform1f(scaleUniformID, 0.5f);
+
+		camera.Inputs(window);
+		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
 		Texture.Bind(); // bind texture
 
