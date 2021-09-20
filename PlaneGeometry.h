@@ -8,14 +8,16 @@ class PlaneGeometry {
 
 public:
 
-	// Vertices coordinates
-	GLfloat vertices[(3 + 3 + 2 + 3)*4] =
-	{ //     COORDINATES     /        COLORS        /    TexCoord    /       NORMALS     //
-		-1.0f, 0.0f,  1.0f,		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,		0.0f, 1.0f, 0.0f,
-		-1.0f, 0.0f, -1.0f,		0.0f, 0.0f, 0.0f,		0.0f, 1.0f,		0.0f, 1.0f, 0.0f,
-		 1.0f, 0.0f, -1.0f,		0.0f, 0.0f, 0.0f,		1.0f, 1.0f,		0.0f, 1.0f, 0.0f,
-		 1.0f, 0.0f,  1.0f,		0.0f, 0.0f, 0.0f,		1.0f, 0.0f,		0.0f, 1.0f, 0.0f
-	};
+	//// Vertices coordinates
+	//GLfloat vertices[(3 + 3 + 2 + 3)*4] =
+	//{ //     COORDINATES     /        COLORS        /    TexCoord    /       NORMALS     //
+	//	-1.0f, 0.0f,  1.0f,		0.0f, 0.0f, 0.0f,		0.0f, 0.0f,		0.0f, 1.0f, 0.0f,
+	//	-1.0f, 0.0f, -1.0f,		0.0f, 0.0f, 0.0f,		0.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+	//	 1.0f, 0.0f, -1.0f,		0.0f, 0.0f, 0.0f,		1.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+	//	 1.0f, 0.0f,  1.0f,		0.0f, 0.0f, 0.0f,		1.0f, 0.0f,		0.0f, 1.0f, 0.0f
+	//};
+
+
 
 	// Indices for vertices order
 	GLuint indices[6] =
