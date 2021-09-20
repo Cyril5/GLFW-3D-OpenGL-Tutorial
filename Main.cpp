@@ -189,6 +189,8 @@ int main() {
 		camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
 		shaderProgram.Activate();
+		// Exports the camera Position to the Fragment Shader for specular lighting
+		glUniform3f(glGetUniformLocation(shaderProgram.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 		camera.Matrix(shaderProgram, "camMatrix");
 
 		Texture.Bind(); // bind texture
@@ -215,8 +217,12 @@ int main() {
 	VBO1.Delete();
 	EBO1.Delete();
 	Texture.Delete();
-
 	shaderProgram.Delete();
+
+	lightVAO.Delete();
+	lightVBO.Delete();
+	lightEBO.Delete();
+	lightShader.Delete();
 
 	glfwDestroyWindow(window);
 	glfwTerminate();
