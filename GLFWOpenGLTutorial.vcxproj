@@ -155,6 +155,7 @@
     <ClCompile Include="ElementBufferObject.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -164,10 +165,12 @@
   <ItemGroup>
     <None Include="default.fragmentShader" />
     <None Include="default.vertexShader" />
+    <None Include="light.vertexShader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ElementBufferObject.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="ShaderClass.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VertexArrayObject.h" />
@@ -176,6 +179,9 @@
   <ItemGroup>
     <Image Include="brick.png" />
     <Image Include="C:\Users\Cyril\Desktop\pop_cat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="light.fragmentShader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
