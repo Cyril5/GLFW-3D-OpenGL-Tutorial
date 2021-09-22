@@ -102,17 +102,22 @@ int main() {
 	// Create light mesh
 	Mesh light(lightVerts, lightInd, tex);
 
-	glm::vec4 lightColor = glm::vec4(1.0f,1.0f,1.0f,1.0f);
+	//Cube 2
+	Mesh cube2(lightVerts, lightInd, tex);
+
+
+	glm::vec4 lightColor = glm::vec4(1.0f,1.0f,1.0f,0.0f);
 
 	glm::vec3 lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
 	glm::mat4 lightModelMatrix = glm::mat4(1.0f);
 	lightModelMatrix = glm::translate(lightModelMatrix, lightPos);
 
 
-	glm::vec3 pyramidPos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::mat4 pyramidModelMatrix = glm::mat4(1.0f);
-	pyramidModelMatrix = glm::translate(pyramidModelMatrix, pyramidPos);
+	glm::vec3 cube2Pos = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	glm::vec3 floorPos = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::mat4 floorModelMatrix = glm::mat4(1.0f);
+	floorModelMatrix = glm::translate(floorModelMatrix, floorPos);
 
 
 	lightShader.Activate();
@@ -120,11 +125,9 @@ int main() {
 	glUniform4f(glGetUniformLocation(lightShader.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	
 	shaderProgram.Activate();
-	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(pyramidModelMatrix));
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(floorModelMatrix));
 	glUniform4f(glGetUniformLocation(shaderProgram.ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 	glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-
-
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -139,8 +142,14 @@ int main() {
 		camera.Inputs(window);
 		camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
-		floor.Draw(shaderProgram, camera);
-		light.Draw(lightShader, camera);
+		floor.Draw(shaderProgram, camera, floorPos,glm::vec3(2.0f,2.0f,2.0f));
+		
+		//shaderProgram.Activate();
+
+		cube2.Draw(shaderProgram, camera, cube2Pos, glm::vec3(1.0f,1.0f,1.0f));
+
+
+		light.Draw(lightShader, camera, lightPos, glm::vec3(1.0f, 1.0f, 1.0f));
 
 
 		// Swap the back buffer with the front buffer

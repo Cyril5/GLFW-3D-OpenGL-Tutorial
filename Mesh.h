@@ -19,7 +19,9 @@ class Mesh {
 
 		Mesh(std::vector<Vertex>& vertices, std::vector<GLuint>& indices, std::vector<Texture>& textures);
 
-		void Draw(Shader& shader, Camera& camera);
+		//void Draw(Shader& shader, Camera& camera);
+
+		void Draw(Shader& shader, Camera& camera, glm::vec3 translation, glm::vec3 scale);
 };
 
 #endif // !MESH_CLASS_H
